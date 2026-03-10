@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fn(){
+            // s = `<h1>이름:${myname.value} 나이:${myage.value} 생일:${mybirth.value}</h1>`
+            // mydiv.innerHTML =  s
+            mydiv.innerText = "헬로.."
+        }
+    </script>
+</head>
+<body>
+    <label>이름:</label>
+    <input id="myname" type="text"><br>
+    <label>나이:</label>
+    <input id="myage" type="number"><br>
+    <label>생일:</label>
+    <input id="mybirth" type="date"><br>
+
+    <input type="radio" name="color"><label>빨강</label>
+    <input type="radio" name="color"><label>파랑</label>
+    <input type="radio" name="color"><label>노랑</label>
+    <br>
+    <button onclick="fn()">확인</button>
+    <hr>
+    <div id="mydiv"></div>
+</body>
+</html>
+
+
+
+

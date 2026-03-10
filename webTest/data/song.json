@@ -1,0 +1,21 @@
+{
+  "kpop": {
+    "slist": [
+      {
+        "album": "album1",
+        "singer": "singer1",
+        "title": "title1"
+      },
+      {
+        "album": "album2",
+        "singer": "singer2",
+        "title": "title2"
+      },
+      {
+        "album": "album3",
+        "singer": "singer3",
+        "title": "title3"
+      }
+    ]
+  }
+}

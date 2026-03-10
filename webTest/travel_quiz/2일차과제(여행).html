@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .layout-wrapper{
+            margin: 0 auto;
+            /* border: 1px solid black; */
+            height: 700px;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 100px;
+            height: 150px;
+        }
+        img {
+            display: flex;
+            margin: 0 auto;
+            height: 400px;
+            width: 600px;
+            justify-content: center;
+            align-items: center;
+        }
+        .item { 
+            background: yellow;
+            padding: 20px; 
+                /* border: 1px solid #000; */
+            }
+        iframe{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        a {
+            display: flex;
+            width: 150px;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-wrapper">
+        <div class="container">
+            <a href="thai.html" target="myi" class="item">태국</a>
+            <a href="phil.html" target="myi" class="item">필리핀</a>
+            <a href="vietnam.html" target="myi" class="item">베트남</a>
+        </div>
+        <hr>
+        <iframe name="myi" width="100%" height="700" frameborder="0"></iframe>
+    </div>
+</body>
+</html>

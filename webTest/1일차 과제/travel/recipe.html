@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>레시피</title>
+    <script src="iframe.js"></script>
+    <style>
+        .layout-wrapper{
+            margin: 0 auto;
+        }
+        .container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 0 auto;
+            height: 100px;
+            top: 100px;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            height: 500px;
+            width: 500px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .item { 
+            background: yellow;
+            padding: 20px; 
+            }
+
+        iframe{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            height: calc(100vh-120px);
+        }
+        a {
+            display: flex;
+            width: 150px;
+            padding: 12px 0;
+            justify-content: center;
+            background: yellow;
+            text-decoration: none;
+            top: 200px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="layout-wrapper">
+        <div class="container">
+            <a href="김치찌개.html" target="myi" class="item">김치찌개</a>
+            <a href="된장찌개.html" target="myi" class="item">된장찌개</a>
+            <a href="부대찌개.html" target="myi" class="item">부대찌개</a>
+        </div>
+        <hr>
+        <iframe name="myi" id="myi" width="100%" frameborder="0"></iframe>
+    </div>
+</body>
+</html>
