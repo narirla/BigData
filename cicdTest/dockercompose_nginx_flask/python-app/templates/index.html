@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>MySQL Data</title>
+    <style>
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>MySQL Data (via Jinja2)</h1>
+
+    {% if rows %}
+        <table>
+            <thead>
+                <tr>
+                    {# 첫 번째 줄의 키(Key)값들을 이용해 헤더 생성 #}
+                    {% for key in rows[0].keys() %}
+                        <th>{{ key }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    {# 각 행의 값(Value)들을 출력 #}
+                    {% for val in row.values() %}
+                        <td>{{ val }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>데이터가 없습니다.</p>
+    {% endif %}
+</body>
+</html>

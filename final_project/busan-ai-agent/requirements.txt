@@ -1,0 +1,15 @@
+gunicorn
+flask
+
+streamlit
+streamlit-option-menu
+
+openai
+langchain
+langchain-core
+langchain-openai
+
+tiktoken
+requests
+
+xmltodict

@@ -1,0 +1,5 @@
+OPEN AI API 키 
+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
+
+클로드 키 
+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

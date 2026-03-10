@@ -1,0 +1,9 @@
+와인데이터셋 이용
+- train, test 나누기
+- 정규화 하기
+- 앙상블 이용하여 train,test (정확도,f1 score , confusion matrix)확인하기
+- 부스팅 모델을 이용한 train,test (정확도,f1 score , confusion matrix)확인하기
+
+iris 데이터 셋 이용
+- 군집화 하기
+- 정답과 군집화값 정확도 확인하기 

@@ -1,0 +1,9 @@
+international airline 데이터
+-----------------------
+
+- EDA 수행: 기술통계값 등
+- acf, pacf 그래프 ,adfuller지수 시계열확인
+- 시계열분해
+- ARIMA 이용 1년 예측
+- SARIMA 이용 1년 예측
+- autoarim 이용 1년 예측

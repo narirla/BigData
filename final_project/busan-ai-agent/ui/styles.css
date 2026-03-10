@@ -1,0 +1,463 @@
+/* ===== 디자인 토큰 (일자리 사이트 테마) ===== */
+:root {
+    --color-primary: #1e5bb8;
+    --color-primary-hover: #164a9a;
+    --color-primary-light: #dbeafe;
+    --color-accent: #0ea5e9;
+    --color-success: #0d9488;
+    --color-warning: #d97706;
+    --color-info: #0284c7;
+    --bg-page: #f0f4f9;
+    --bg-page-end: #e6eef6;
+    --bg-card: #ffffff;
+    --bg-elevated: #f8fafc;
+    --border: #dce4ef;
+    --border-light: #e8eef5;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --radius: 0.5rem;
+    --radius-lg: 0.75rem;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --shadow-md: 0 4px 12px -2px rgb(30 91 184 / 0.08), 0 2px 6px -2px rgb(0 0 0 / 0.06);
+}
+
+/* Streamlit 상단 헤더 숨김 (display:none으로 공간까지 제거) */
+header { display: none !important; }
+[data-testid="stHeader"] { display: none !important; }
+.stDeployButton { display: none !important; }
+#MainMenu { display: none !important; }
+
+/* 메인 영역: 가운데 정렬 + 상단 여백 완전 제거 */
+.main .block-container,
+div.block-container,
+section[data-testid="stSidebar"] + section .block-container,
+section.main .block-container {
+    max-width: 1100px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-top: 0 !important;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* 페이지 배경: 일자리 사이트 톤 (부드러운 블루그레이) */
+.stApp {
+    background: linear-gradient(180deg, var(--bg-page) 0%, var(--bg-page-end) 100%) !important;
+    min-height: 100vh;
+}
+[data-testid="stAppViewContainer"] {
+    padding-top: 0 !important;
+    background: transparent !important;
+}
+[data-testid="stAppViewContainer"] > section {
+    padding-top: 0 !important;
+}
+section.main {
+    padding-top: 0 !important;
+}
+.main .block-container > div:first-child {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* =====   Section (JOBIT's) ===== */
+.hero {
+    max-width: 1100px;
+    margin: -0.5rem auto 2rem auto !important;
+    padding: 2.5rem 2rem !important;
+    background: linear-gradient(160deg, #ffffff 0%, #f8fbfd 50%, #f0f6fc 100%) !important;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--border-light) !important;
+    box-shadow: var(--shadow-md) !important;
+    overflow: hidden;
+    position: relative;
+}
+.hero-inner {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 1.0rem;
+    position: relative;
+}
+.hero-visual {
+    flex-shrink: 0; 
+}
+.hero-img {
+    width: 180px !important;
+    height: 180px !important;
+    object-fit: contain !important;
+    display: block !important;
+    filter: drop-shadow(0 8px 24px rgba(30, 91, 184, 0.12));
+}
+.hero-content {
+    width: 1000px;
+    text-align: center;
+    min-width: 0;
+}
+.hero-title {
+    display: inline-block;
+    width: 175px;
+    margin: 0 !important;
+    font-size: 52px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.04em !important;
+    line-height: 1.15 !important;
+    background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-primary) 40%, var(--color-accent) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+.hero-tagline {
+    display: inline-block;
+    width: 1000px !important;
+    margin: 0.75rem 0 0 0 !important;
+    font-size: clamp(1.05rem, 2vw, 1.25rem) !important;
+    font-weight: 500 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.5 !important;
+    opacity: 0.92;
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding: 2rem 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    .hero-title{
+        display: block !important;
+        width: auto !important;
+        margin-top:  0.35rem !important;
+    }
+    .hero-inner {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center !important;
+    }
+    .hero-content { 
+        text-align: center !important; 
+        width: 100% !important;
+    }
+    .hero-img {
+        width: 140px !important;
+        height: 140px !important;
+    }
+    .hero-tagline { 
+        margin-top: 0.5rem !important; 
+        width: 100% !important;
+    }
+}
+
+/* ===== 타이포그래피 (제목/캡션) ===== */
+.stMarkdown h1, [data-testid="stMarkdown"] h1 {
+    color: var(--text-primary) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+}
+.stMarkdown h2, [data-testid="stMarkdown"] h2 {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+    font-size: 1.25rem !important;
+}
+.stMarkdown h3, [data-testid="stMarkdown"] h3 {
+    color: var(--text-primary) !important;
+    font-weight: 600 !important;
+}
+.stMarkdown p, .stMarkdown span {
+    color: var(--text-secondary) !important;
+}
+[data-testid="stCaptionContainer"] {
+    color: var(--text-secondary) !important;
+}
+
+/* ===== 버튼 ===== */
+.stButton > button {
+    border-radius: var(--radius) !important;
+    padding: 0.5rem 1.25rem !important;
+    font-weight: 500 !important;
+    border: 1px solid var(--border) !important;
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    transition: all 0.2s ease !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+.stButton > button:hover {
+    background: var(--bg-page) !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: var(--shadow) !important;
+}
+.stButton > button:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(30, 91, 184, 0.25) !important;
+    border-color: var(--color-primary) !important;
+}
+
+/* 마커(버튼 행 식별용): 시각적으로 숨김 */
+.aptitude-result-actions-marker {
+    display: none !important;
+}
+/* 검사 결과 저장 / 초기화: 직후 가로 블록만 타깃 (다른 2열 버튼 영향 없음) */
+.aptitude-result-actions-marker + [data-testid="stHorizontalBlock"] > *:first-child .stButton > button {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%) !important;
+    color: #fff !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(30, 91, 184, 0.3) !important;
+}
+.aptitude-result-actions-marker + [data-testid="stHorizontalBlock"] > *:first-child .stButton > button:hover {
+    background: linear-gradient(135deg, var(--color-primary-hover) 0%, #1e3a5f 100%) !important;
+    box-shadow: 0 4px 12px rgba(30, 91, 184, 0.35) !important;
+}
+.aptitude-result-actions-marker + [data-testid="stHorizontalBlock"] > *:last-child .stButton > button {
+    background: var(--bg-elevated) !important;
+    color: var(--text-secondary) !important;
+    border: 1px solid var(--border) !important;
+}
+.aptitude-result-actions-marker + [data-testid="stHorizontalBlock"] > *:last-child .stButton > button:hover {
+    background: var(--bg-page) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border) !important;
+}
+
+/* ===== 입력 필드 ===== */
+.stTextInput input,
+.stTextArea textarea,
+[data-testid="stTextInput"] input {
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--border) !important;
+    padding: 0.5rem 0.75rem !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
+    background: var(--bg-card) !important;
+}
+.stTextInput input:focus,
+.stTextArea textarea:focus,
+[data-testid="stTextInput"] input:focus {
+    outline: none !important;
+    border-color: var(--color-primary) !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15) !important;
+}
+
+/* 셀렉트박스 */
+.stSelectbox > div, [data-testid="stSelectbox"] > div { border-radius: var(--radius) !important; }
+.stSelectbox div[role="combobox"],
+[data-testid="stSelectbox"] div[role="combobox"] {
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--border) !important;
+    padding: 0.5rem 0.75rem !important;
+}
+
+/* 슬라이더 */
+.stSlider [role="slider"], [data-testid="stSlider"] [role="slider"] {
+    border-radius: 9999px !important;
+}
+
+/* 체크박스 */
+.stCheckbox label { border-radius: 0.25rem !important; }
+
+/* ===== 라디오 버튼 · 텍스트 예쁘게 ===== */
+[data-testid="stRadio"] {
+    gap: 0.5rem !important;
+}
+[data-testid="stRadio"] > div {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+}
+[data-testid="stRadio"] label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.875rem !important;
+    padding: 0.35rem 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    transition: color 0.2s !important;
+    cursor: pointer !important;
+    margin-bottom: 0 !important;
+    font-size: 0.9375rem !important;
+    font-weight: 500 !important;
+    line-height: 1.45 !important;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.01em !important;
+}
+[data-testid="stRadio"] label:hover {
+    color: var(--color-primary) !important;
+}
+[data-testid="stRadio"] label:has(input:checked) {
+    color: var(--color-primary) !important;
+}
+[data-testid="stRadio"] input[type="radio"] {
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+    accent-color: var(--color-primary) !important;
+    cursor: pointer !important;
+}
+[data-testid="stRadio"] label span {
+    flex: 1 !important;
+    line-height: 1.45 !important;
+}
+[data-testid="stRadio"] .stRadio > div {
+    margin-bottom: 0.75rem !important;
+}
+
+/* IT 적성검사 섹션 상단 간격 = 위 타이틀(JOBIT'S) 부분과 동일하게 */
+.aptitude-section-spacer {
+    height: 3.5rem;
+    margin-bottom: 0;
+}
+
+/* 폼 / 구분선 */
+.stForm { border-radius: var(--radius) !important; }
+hr {
+    border-color: var(--border) !important;
+    margin: 1rem 0 !important;
+}
+
+/* ===== 익스팬더: 접힌/펼친 상태 확실히 구분 ===== */
+[data-testid="stExpander"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--border) !important;
+    background: var(--bg-card) !important;
+    box-shadow: var(--shadow) !important;
+    overflow: hidden !important;
+    margin-bottom: 0.75rem !important;
+}
+[data-testid="stExpander"] > div {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 접었을 때: 헤더만 보이는 바 */
+.streamlit-expanderHeader {
+    padding: 0.75rem 1rem !important;
+    font-weight: 600 !important;
+    font-size: 0.9375rem !important;
+    color: var(--text-secondary) !important;
+    background: var(--bg-elevated) !important;
+    border: none !important;
+    border-bottom: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    transition: background 0.2s, color 0.2s !important;
+}
+.streamlit-expanderHeader:hover {
+    background: var(--bg-page) !important;
+    color: var(--text-primary) !important;
+}
+
+/* 펼쳤을 때: 헤더는 위쪽만 둥글게 */
+[data-testid="stExpander"]:has(.streamlit-expanderContent) .streamlit-expanderHeader {
+    border-radius: var(--radius) var(--radius) 0 0 !important;
+    border-bottom: 2px solid var(--border) !important;
+    background: var(--bg-page) !important;
+    color: var(--text-primary) !important;
+}
+
+/* 펼친 뒤 보이는 콘텐츠 영역 */
+.streamlit-expanderContent {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem 1.25rem !important;
+    background: var(--bg-card) !important;
+    border: none !important;
+    border-top: none !important;
+    border-radius: 0 0 var(--radius) var(--radius) !important;
+    border-bottom: 1px solid var(--border) !important;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02) !important;
+}
+
+/* ===== 알림/정보 박스 ===== */
+[data-testid="stAlert"] {
+    border-radius: var(--radius) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ===== 데이터프레임 ===== */
+[data-testid="stDataFrame"] {
+    border-radius: var(--radius) !important;
+    overflow: hidden !important;
+    box-shadow: var(--shadow-sm) !important;
+    border: 1px solid var(--border) !important;
+}
+
+/* ===== 채팅 메시지 ===== */
+[data-testid="stChatMessage"] {
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+/* ===== TOP 버튼 (인라인 대신 클래스로) ===== */
+.top-btn-float {
+    position: fixed !important;
+    right: 2rem !important;
+    bottom: 1.5rem !important;
+    z-index: 999999 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 3rem !important;
+    height: 2.5rem !important;
+    border-radius: var(--radius) !important;
+    background: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow-md) !important;
+    text-decoration: none !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+.top-btn-float:hover {
+    background: var(--bg-page) !important;
+    box-shadow: var(--shadow) !important;
+    color: var(--color-primary) !important;
+}
+
+/* ===== 다크 모드 ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-page: #0f172a;
+        --bg-page-end: #020617;
+        --bg-card: #1e293b;
+        --bg-elevated: #1e293b;
+        --border: #334155;
+        --border-light: #475569;
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+    }
+    .stButton > button {
+        background: #334155 !important;
+        border-color: #475569 !important;
+        color: #f1f5f9 !important;
+    }
+    .stButton > button:hover {
+        background: #475569 !important;
+    }
+    .stTextInput input, .stTextArea textarea {
+        background: #1e293b !important;
+        border-color: #475569 !important;
+        color: #f1f5f9 !important;
+    }
+    .hero {
+        background: linear-gradient(160deg, #1e3a5f 0%, #0f172a 50%, #020617 100%) !important;
+        border-color: rgba(71, 85, 105, 0.5) !important;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2) !important;
+    }
+    .hero::before { opacity: 0.7; }
+    .hero-tagline { color: #cbd5e1 !important; opacity: 0.95; }
+}
+
+/* 성향 점수 차트 카드(Altair 차트 컨테이너) */
+div[data-testid="stChart"]{
+    background: linear-gradient(160deg, #ffffff 0%, #f8fbfd 50%, #f0f6fc 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    padding: 12px;
+}

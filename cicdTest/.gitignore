@@ -1,0 +1,12 @@
+dockercompose_python_mysql/mysql-data/
+dockercompose_python_streamlit/mysql-data/
+dockercompose_nginx_streamlit/mysql-data/
+dockercompose_nginx_mysql/mysql-data/
+mysql-data/
+mysqldata/
+*.sock
+과제/2일차/1조(고선주,김나리,유서하,전해성)
+basic_test/
+aws_test/
+mysql_data/
+aws_docktest/

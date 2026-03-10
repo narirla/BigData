@@ -1,0 +1,28 @@
+# 이미지 용량 폭증, 보안 위험, 배포 안정성 저하
+analysis/
+
+# 로컬 실행 결과물, OS/파이썬 버전 의존 -> 배포 환경에서 새로 생성되어 포함할 이유 X
+**/__pycache__/
+
+# 실험·EDA용, 실행에 필요 없음, 용량 큼 -> 분석 흔적을 서버에 올릴 이유가 없음
+*.ipynb
+
+# 데이터 파일 : 데이터는 외부 저장소(S3, DB) 또는 런타임 로드
+*.csv
+*.xlsx
+*.parquet
+
+# 모델 파일 : 필요하면 별도 경로 또는 런타임 다운로드
+*.pkl
+*.joblib
+
+# API Key, Secret Key 포함 -> GitHub Actions / EC2에서 주입해야 함
+.env
+
+# Git 메타데이터, CI/CD 정보, 용량 + 보안 -> 컨테이너는 Git 몰라도 됨
+.git
+.github
+
+# 개발자 개인 환경, 운영 환경과 무관
+.vscode
+.DS_Store

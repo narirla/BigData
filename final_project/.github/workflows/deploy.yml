@@ -1,0 +1,53 @@
+name: Docker CI/CD Deploy
+
+on:
+  workflow_dispatch:  # 수동 실행
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 코드 체크아웃
+        uses: actions/checkout@v4
+
+      # 1. Docker Hub 로그인 (Secrets에 아이디/비번 등록 필요)
+      - name: Docker Hub 로그인
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 2. 이미지 빌드 및 업로드
+      - name: 빌드 및 푸시
+        uses: docker/build-push-action@v5
+        with:
+          context: ./busan-ai-agent
+          file: docker/Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ac4d_repository:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: AWS 서버 접속 및 도커 실행
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ubuntu
+          key: ${{ secrets.AWS_SSH_KEY }}
+          script: |
+            sudo docker stop ac4d_repository || true
+            sudo docker rm ac4d_repository || true
+            # 이미지 Clean up (용량 확보를 위해 오래된 이미지 삭제)
+            sudo docker image prune -f
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/ac4d_repository:latest
+            # -p 8501:8501 옵션을 추가하여 외부 접속 허용
+            sudo docker run -d --name ac4d_repository --restart unless-stopped \
+            -e OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+            -e WORK24_AUTH_KEY_JOBINFO="${{ secrets.WORK24_AUTH_KEY_JOBINFO }}" \
+            -e WORK24_AUTH_KEY_TRAINING="${{ secrets.WORK24_AUTH_KEY_TRAINING }}" \
+            -e YOUTH_POLICY_OPENAPI_KEY="${{ secrets.YOUTH_POLICY_OPENAPI_KEY }}" \
+            -p 8501:8501 \
+            ${{ secrets.DOCKERHUB_USERNAME }}/ac4d_repository:latest

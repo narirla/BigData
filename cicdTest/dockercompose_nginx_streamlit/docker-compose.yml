@@ -1,0 +1,35 @@
+# nginx 
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - .\nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - streamlit_app
+
+# streamlit
+# 이미지 빌드 및 환경 변수 설정
+  streamlit_app:
+    build: ./python-app
+
+    environment:
+      DB_HOST: mysql
+      DB_USER: scott
+      DB_PASS: tiger
+      DB_NAME: mydb
+    depends_on:
+      - mysql #mysql 구동되어만 사용가능
+
+# MySQL
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: my123
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: scott
+      MYSQL_PASSWORD: tiger
+    volumes:
+      - .\init.sql:/docker-entrypoint-initdb.d/init.sql
+      - C:\cicdTest\mysql_data:/var/lib/mysql

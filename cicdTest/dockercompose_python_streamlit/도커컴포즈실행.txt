@@ -1,0 +1,9 @@
+docker-compose up --build
+
+docker-compose up --build -d
+
+docker-compose build  # 이미지를 수동으로 빌드
+이미지가있는 경우는 
+docker-compose up  # 빌드된 이미지를 실행
+
+docker run -e MYSQL_ROOT_PASSWORD=rootpassword MYSQL_DATABASE=testdb -p 3306:306 -v C:\cicdTest\dockercompose_python_mysql\mysql-data:/var/lib/mysql mysql:5.7

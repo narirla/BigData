@@ -1,0 +1,28 @@
+#docker build -t your-image-name .
+docker build -t my-python .
+docker images
+
+# docker run your-image-name # 실행하기
+docker run my-python # 실행하기 , 파이썬 파일이 실행 후 종료되어서 컨테이너가 자동 종료됨
+
+
+Docker는 이미지를 로컬 디스크에 저장하지만, 해당 이미지는 일반적인 
+파일로 접근할 수 있는 형태가 아니고, Docker의 내부 구조에 의해 관리.
+
+
+docker save 명령어를 사용하여 이미지를 .tar 파일로 저장할 수 있다.
+docker save -o my-python-image.tar my-python
+
+
+### docker-hub 에 올리기
+
+docker login # 브라우저에 콘솔 코드 입력
+docker tag my-python username/my-python
+
+docker tag your-image-name visionfa21/my-python
+
+ex) docker tag my-python vision22/my-python
+docker push username/my-python
+
+## 실행
+docker run username/my-python

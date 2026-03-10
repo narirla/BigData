@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - C:\cicdTest\dockercompose_python_streamlit\mysql-data:/var/lib/mysql
+      - .\init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  python-app:
+    build: ./python-app
+    depends_on:
+      - db
+    ports:
+      - "8501:8501"
+    volumes:
+      - C:\cicdTest\dockercompose_python_streamlit\python-app:/usr/src/app
+    working_dir: /usr/src/app
+    command: streamlit run app.py --server.address=0.0.0.0 --server.port=8501

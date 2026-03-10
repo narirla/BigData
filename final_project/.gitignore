@@ -1,0 +1,49 @@
+# ===== Python =====
+__pycache__/
+**/__pycache__/
+
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+
+# ===== Virtual Environments =====
+.venv/
+venv/
+env/
+
+# ===== IDE =====
+.idea/
+.vscode/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db
+
+# ===== Streamlit =====
+.streamlit/
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+
+# ===== Environment Variables =====
+# EC2 서버 안(프로젝트 폴더) : Docker 컨테이너가 읽음 -> 앱이 실행될 환경(서버/로컬)의 비밀 설정 파일
+.env
+.env.*
+# 공유용 템플릿
+!.env.example
+
+# ===== Docker =====
+# Docker 산출물
+*.tar
+
+# ===== Logs ======
+*.log
+
+# ===== Build / Cache =====
+build/
+dist/
+.cache/
+*.pyc
+/busan-ai-agent/core/data/cache
+

@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword  # 필수
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - C:\cicdTest\dockercompose_python_mysql\mysql-data:/var/lib/mysql
+      - .\init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  python-app:
+    build: ./python-app
+    depends_on:
+      - db
+    volumes:
+      - C:\cicdTest\dockercompose_python_mysql\python-app:/usr/src/app
+    working_dir: /usr/src/app
+    command: python app.py
+
+volumes:
+  mysql-data:
