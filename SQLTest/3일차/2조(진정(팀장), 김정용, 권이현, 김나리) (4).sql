@@ -1,0 +1,101 @@
+#1. 10번 부서에 있는 사람 중 30번 부서에는 없는 업무를 하는 사원의 사원번호, 이름, 부서명, 입사일, 지역
+# SELECT * FROM EMP;
+# SELECT * FROM DEPT;
+
+
+# SELECT ENAME, JOB FROM EMP WHERE DEPTNO = 10;
+# SELECT ENAME, JOB FROM EMP WHERE DEPTNO = 30;
+# SELECT ENAME, JOB FROM EMP WHERE DEPTNO = '10' AND JOB NOT IN (SELECT JOB FROM EMP WHERE DEPTNO = 30);
+
+SELECT 
+    E.DEPTNO, E.ENAME, D.DNAME, E.HIREDATE, D.LOC
+FROM
+    EMP AS E
+        INNER JOIN
+    DEPT AS D ON E.DEPTNO = D.DEPTNO
+WHERE
+    E.DEPTNO = '10'
+        AND JOB NOT IN (SELECT 
+            JOB
+        FROM
+            EMP
+        WHERE
+            DEPTNO = 30);
+
+#2. 시카고에서 근무하는 사원의 이름과 근무지
+SELECT 
+    E.ENAME, D.LOC
+FROM
+    EMP AS E
+        INNER JOIN
+    DEPT AS D ON E.DEPTNO = D.DEPTNO
+WHERE
+    D.LOC = 'CHICAGO';
+    
+#3. 위치가 뉴욕인 사원들 중 입사일이 가장 늦은 사람의 부서명과 사원이름
+SELECT MAX(HIREDATE) FROM EMP WHERE DEPTNO = '10';
+
+SELECT 
+    D.DNAME, E.ENAME
+FROM
+    DEPT AS D
+        INNER JOIN
+    EMP AS E ON D.DEPTNO = E.DEPTNO
+WHERE
+    D.LOC = 'NEW YORK'
+        AND E.HIREDATE = (SELECT 
+            MAX(HIREDATE)
+        FROM
+            EMP
+        WHERE
+            DEPTNO = D.DEPTNO);
+            
+#4. 입사한 날짜별 급여의 평균의 구하시오(view 생성)
+SELECT DAYOFWEEK(HIREDATE), AVG(SAL) FROM EMP GROUP BY DAYOFWEEK(HIREDATE); #요일
+
+#5. 입사일로부터 4개월 지난 후의 날, 90일 후의 날, 급여
+# SELECT ENAME, HIREDATE, DATE_ADD(HIREDATE, INTERVAL 4 MONTH), DATE_ADD(HIREDATE, INTERVAL 90 DAY), SAL FROM EMP;
+SELECT ENAME, HIREDATE, DATE_ADD(HIREDATE, INTERVAL 4 MONTH) AS 4개월후, DATE_ADD(HIREDATE, INTERVAL 90 DAY) AS 90일후, SAL FROM EMP;
+
+#6. 년도 및 월별 급여의 평균 -> 따로??
+SELECT YEAR(HIREDATE), AVG(SAL) FROM EMP GROUP BY YEAR(HIREDATE);
+SELECT MONTH(HIREDATE), AVG(SAL) FROM EMP GROUP BY MONTH(HIREDATE);
+
+SELECT 'YEAR' AS 구분, YEAR(HIREDATE) AS 구분값, AVG(SAL) AS 평균급여 FROM EMP GROUP BY YEAR(HIREDATE)
+UNION ALL
+SELECT 'MONTH' AS 구
+, MONTH(HIREDATE) AS 구분값, AVG(SAL) AS 평균급여 FROM EMP GROUP BY MONTH(HIREDATE);
+
+#7. 부산에서 발생한 총 사망자수
+SELECT * FROM KOREA_TRAFFIC_ACCIDENT;
+SELECT * FROM KOREA_TRAFFIC_ACCIDENT WHERE `발생지시도` = '부산';
+
+SELECT SUM(`사망자수`) FROM KOREA_TRAFFIC_ACCIDENT WHERE `발생지시도` = '부산';
+
+#8. 부산지역 월요일에 발생한 사상자수, 사고유형, 법규위반
+SELECT `사상자수`, `사고유형`, `법규위반` FROM KOREA_TRAFFIC_ACCIDENT WHERE `발생지시도` = '부산' AND `요일` = '월';
+
+#9. 법규위반별 순위?
+SELECT `법규위반`, COUNT(`법규위반`) FROM KOREA_TRAFFIC_ACCIDENT GROUP BY `법규위반` ORDER BY COUNT(`법규위반`) DESC;
+
+#10. 부산에서 일어난 요일별 사망자수, 사상자수 출력(월~일 순으로)
+SELECT `요일`, SUM(`사망자수`), SUM(`사상자수`) FROM KOREA_TRAFFIC_ACCIDENT WHERE `발생지시도` = '부산' GROUP BY `요일`;
+
+SELECT 
+    `요일`,
+    SUM(`사망자수`),
+    SUM(`사상자수`)
+FROM KOREA_TRAFFIC_ACCIDENT
+WHERE `발생지시도` = '부산'
+GROUP BY `요일`
+ORDER BY CASE `요일` # FIELD(`요일`, '월', '화', '수', '목', '금', '토', '일');
+    WHEN '월' THEN 1
+    WHEN '화' THEN 2
+    WHEN '수' THEN 3
+    WHEN '목' THEN 4
+    WHEN '금' THEN 5
+    WHEN '토' THEN 6
+    WHEN '일' THEN 7
+END;
+
+#11. 살인발생이 가장 높은 
