@@ -6,6 +6,7 @@
 ---
 
 ## Repository Structure
+```
 BigData
 │
 ├── aws
@@ -16,7 +17,7 @@ BigData
 ├── pandasTest
 ├── water_project
 └── 모델링수학
-
+```
 
 각 디렉토리는 교육 과정에서 진행한 실습 또는 프로젝트를 포함합니다.
 
